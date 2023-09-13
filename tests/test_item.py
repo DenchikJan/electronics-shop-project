@@ -27,3 +27,17 @@ class TestItem:
         item3 = Item('Laptop', 100000.0, 8)
         item3.name = "HP ProBook 4520s"
         assert item3.name == "HP ProBook"
+
+    def test_string_to_number(self):
+        assert Item.string_to_number('5') == 5
+        assert Item.string_to_number('5.0') == 5.0
+        assert Item.string_to_number('5.5') == 5.5
+        assert Item.string_to_number('5.5DD') is None
+
+    def test_instantiate_from_csv(self):
+        Item.instantiate_from_csv('../src/items.csv')
+        assert len(Item.all) == 5
+        item1 = Item.all[4]
+        assert item1.quantity == 5
+
+
