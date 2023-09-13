@@ -4,9 +4,13 @@ from src.item import Item
 
 class TestItem:
 
-    def test_all(self):
-        assert Item.all == []
+    def test_init(self):
         item = Item('Laptop', 89999.99, 10)
+        assert item.name == "Laptop"
+        assert item.price == 89999.99
+        assert item.quantity == 10
+
+    def test_all(self):
         assert len(Item.all) == 1
 
     def test_calculate_total_price(self):
@@ -18,3 +22,8 @@ class TestItem:
         item2 = Item('Laptop', 100000.0, 8)
         item2.apply_discount()
         assert item2.price == 80000
+
+    def test_name(self):
+        item3 = Item('Laptop', 100000.0, 8)
+        item3.name = "HP ProBook 4520s"
+        assert item3.name == "HP ProBook"
